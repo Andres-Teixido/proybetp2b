@@ -1,9 +1,10 @@
 let express = require('express');
 let router = express.Router();
 const dataInventor = require('./../data/Inventor');
+const auth = require('../middleware/auth');
 
 /* GET listado de inventores */
-router.get('/', async function(req, res, next) {
+router.get('/', auth, async function(req, res, next) {
   res.json(await dataInventor.getAllInventors());
 });
 

@@ -15,10 +15,11 @@ async function getAllInventors(){
    //return (await readMocInventor());
    const connectionMongo = await connection.getConnection();
    const inventors = await connectionMongo
-                        .db('sample_betp2b')
+                        .db('sample_betp2')
                         .collection('inventors')
                         .find()
                         .toArray();
+    console.log(inventors);
     return inventors;
 }
 
@@ -28,7 +29,7 @@ async function getInventor(id){
     // return inventor;
     const connectionMongo = await connection.getConnection();
     const inventor = await connectionMongo
-                         .db('sample_betp2b')
+                         .db('sample_betp2')
                          .collection('inventors')
                          .findOne({_id: parseInt(id) });
     return inventor;
@@ -40,7 +41,7 @@ async function pushInventor(inventor){
     // await writeMocInventor(data);
     const connectionMongo = await connection.getConnection();
     const result = await connectionMongo
-                         .db('sample_betp2b')
+                         .db('sample_betp2')
                          .collection('inventors')
                          .insertOne(inventor);
     return result;
@@ -64,7 +65,7 @@ async function updateInventor(inventor){
             img: inventor.img
         }
     };
-    const result = await connectionMongo.db('sample_betp2b')
+    const result = await connectionMongo.db('sample_betp2')
                             .collection('inventors')
                             .updateOne(query, newValues);
     return result;
@@ -78,7 +79,7 @@ async function deleteInventor(id){
     // );
     // await writeMocInventor(data);
     const connectionMongo = await connection.getConnection();
-    const result = await connectionMongo.db('sample_betp2b')
+    const result = await connectionMongo.db('sample_betp2')
                             .collection('inventors')
                             .deleteOne({_id: parseInt(id)});
     return result;
